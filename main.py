@@ -11,3 +11,6 @@ st.markdown(f'<iframe src="{loom_embed_url}" style="width:100%; height:400px; bo
 
 video_path='https://www.loom.com/share/521b9bfc03844421b556776dc7a6bac2'
 st.markdown(f'<a href="{video_path}"> Clicca qui per vedere come fare questo export Clienti da Shopify</a>', unsafe_allow_html=True)
+
+video_wordpress='https://www.loom.com/share/ac8bebac1793447f938806725dc4fd5c'
+st.markdown(f'<a href="{video_wordpress}"> Clicca qui per vedere come fare questo export Clienti da Woocommerce</a>', unsafe_allow_html=True)

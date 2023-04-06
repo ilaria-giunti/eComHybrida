@@ -31,4 +31,4 @@ if button:
     reprate_23 = round(treordini / dueordini *100,2)
 
     st.write (f'Il {reprate_12}% dele persone fa più di un ordine')
-    st.write (f'Il {reprate_23}% dele persone che ha fatto un ordine, ha fatto almeno un secondo ordine')
+    st.write (f'Il {reprate_23}% dele persone che ha fatto 2 ordini, ha fatto almeno un secondo ordine')

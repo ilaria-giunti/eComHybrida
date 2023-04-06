@@ -19,8 +19,10 @@ st.write("")
 button=st.button('Invia i tuoi dati')
 if button:
     df = pd.read_csv(file)
-    df3=df
-    ltv90= df3[(df3["order_date"] - df3["primo_ordine"]).dt.days <= 90].groupby("customer_id")["order_total"].sum()
+    df['order_date'] = pd.to_datetime(df['order_date']) # Convert 'order_date' to datetime
+    df['primo_ordine'] = df.groupby('customer_id')['order_date'].transform('min') # Add 'primo_ordine' column
+    
+    ltv90= df[(df["order_date"] - df["primo_ordine"]).dt.days <= 90].groupby("customer_id")["order_total"].sum()
     df["lt_90"]=df["customer_id"].map(ltv90)
     
     ltv_90days=ltv90.mean().round(2)
@@ -29,5 +31,3 @@ if button:
     ltvnormal=df.groupby("customer_id")["order_total"].sum()
     ltv=ltvnormal.mean()
     st.write(f'il LTV generale dei tuoi clienti è {ltv}€')
-    
-    

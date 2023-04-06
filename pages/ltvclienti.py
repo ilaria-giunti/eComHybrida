@@ -30,4 +30,10 @@ if button:
     
     ltvnormal=df.groupby("customer_id")["order_total"].sum()
     ltv=ltvnormal.mean().round(2)
+    
+    last_order_date = df.groupby("customer_id")["order_date"].max()
+    df["ultimo_ordine"] = df["customer_id"].map(last_order_date)
+    tempo=((df["ultimo_ordine"]-df["primo_ordine"]).dt.days).mean().round(2)
+    
     st.write(f'il LTV generale dei tuoi clienti è {ltv}€')
+    st.write(f'i tuoi clienti restano con te {tempo} giorni in media')

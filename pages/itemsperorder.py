@@ -20,7 +20,6 @@ button=st.button('Invia il tuo file')
 
 if button:
     df_prodotto=pd.read_csv(product)
-    df.dropna()
     df=df.groupby("order_id")["Product Name"].count()
     items=df.mean().round(2)
     st.write(f"in media i tuoi clienti acquistano {items} prodotti per ordine")

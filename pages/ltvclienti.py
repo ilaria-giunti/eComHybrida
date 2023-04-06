@@ -1,0 +1,34 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+st.title('Ottieni LTV generale e a 90 giorni')
+st.markdown("""
+Per ottenere queste info, carica un file CSV con le seguenti colonne con questo esatto nome:
+- order_id	
+- customer_id : Deve contenere o Nome e Cognome del cliente oppure ID oppure email
+- order_total : il totale pagato. Non deve avere il simbolo dell'euro e come segno decimale deve avere il punto
+- order_date : data di ordine con il formato YYYY-MM-DD
+""")
+file=st.file_uploader('Carica il tuo file CSV Clienti')
+file_path='https://docs.google.com/spreadsheets/d/1stEgE4vlaY65MPQ1obn5MFUwLcbc2JMlwv8Dd5W2PIY/export?format=csv'
+st.markdown(f'<a href="{file_path}" download> Clicca qui per scaricare un CSV di esempioe</a>', unsafe_allow_html=True)
+st.write("") 
+st.write("") 
+
+budget=st.number_input('Inserisci qui il budget speso negli ultimi 3 mesi')
+
+button=st.button('Invia i tuoi dati')
+if button:
+    df = pd.read_csv(file)
+    ltv90= df3[(df3["order_date"] - df3["primo_ordine"]).dt.days <= 90].groupby("customer_id")["order_total"].sum()
+    df["lt_90"]=df["customer_id"].map(ltv90)
+    
+    ltv_90days=ltv90.mean().round(2)
+    st.write(f'il LTV a 90 giorni dei tuoi clienti è {ltv_90days}€')
+    
+    ltvnormal=df.groupby("customer_id")["order_total"].sum()
+    ltv=ltvnormal.mean()
+    st.write(f'il LTV generale dei tuoi clienti è {ltv}€')
+    
+    

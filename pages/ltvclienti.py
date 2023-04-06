@@ -29,5 +29,5 @@ if button:
     st.write(f'il LTV a 90 giorni dei tuoi clienti è {ltv_90days}€')
     
     ltvnormal=df.groupby("customer_id")["order_total"].sum()
-    ltv=ltvnormal.mean()
+    ltv=ltvnormal.mean().round(2)
     st.write(f'il LTV generale dei tuoi clienti è {ltv}€')

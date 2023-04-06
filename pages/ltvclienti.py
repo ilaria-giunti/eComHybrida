@@ -16,8 +16,6 @@ st.markdown(f'<a href="{file_path}" download> Clicca qui per scaricare un CSV di
 st.write("") 
 st.write("") 
 
-budget=st.number_input('Inserisci qui il budget speso negli ultimi 3 mesi')
-
 button=st.button('Invia i tuoi dati')
 if button:
     df = pd.read_csv(file)

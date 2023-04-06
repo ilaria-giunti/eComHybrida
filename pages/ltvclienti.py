@@ -19,6 +19,7 @@ st.write("")
 button=st.button('Invia i tuoi dati')
 if button:
     df = pd.read_csv(file)
+    df3=df
     ltv90= df3[(df3["order_date"] - df3["primo_ordine"]).dt.days <= 90].groupby("customer_id")["order_total"].sum()
     df["lt_90"]=df["customer_id"].map(ltv90)
     

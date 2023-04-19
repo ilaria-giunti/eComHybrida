@@ -57,7 +57,7 @@ if button:
     df5["primo_ordine"] = df5["customer_id"].map(first_order_date)
     df5['order_type'] = np.where(df5['order_date'] == df5['primo_ordine'], 'New', 'Recurring')
     data3=df5.groupby('order_type')['order_total','order_id'].agg({'order_total': 'sum', 'order_id': 'count'})
-    data3['aov']=round(data3['order_total']/(df2['order_id']),2)
+    data3['aov']=round(data3['order_total']/(data3['order_id']),2)
 
 
     st.write(f'Nel tuo Database hai {client} clienti')
